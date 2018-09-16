@@ -1,0 +1,32 @@
+<div id="page_wrapper">
+  <h1 class="title">
+    <%= @post.title %>
+  </h1>
+
+  <% if user_signed_in? %>
+    <p class="date">
+      submitted <%= time_ago_in_words(@post.created_at) %> Ago
+      | <strong><%= link_to 'Edit', edit_post_path(@post) %></strong>
+      | <strong><p id='delete' data-comment-id = '<%= @post.id %>'>Destroy</p></strong>
+    </p>
+  <% end %>
+
+
+  <p class="body">
+    <%= raw(@post.body) %>
+  </p>
+
+  <p class="url">
+    <span class="glyphicon glyphicon-hand-right"></span><strong><%= link_to ' URL: Click here to get source code', @post.url %></strong>
+  </p>
+
+
+  <div id="comments">
+		<h2><%= @post.comments.count %> Comments</h2><hr>
+
+		<%= render @post.comments.order('created_at DESC') %><hr>
+
+		<h3>Add a comment:</h3>
+		<%= render "comments/form" %>
+</div>
+</div>

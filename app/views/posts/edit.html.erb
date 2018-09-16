@@ -1,0 +1,28 @@
+<div id="page_wrapper">
+  <h1>Edit Post</h1>
+  <%= form_for :post, url: post_path(@post), method: :patch do |f| %>
+    <% if @post.errors.any? %>
+      <% @post.errors.full_messages.each do |msg| %>
+        <div class="alert alert-danger"><%= msg %></div>
+      <% end %>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :title %><br/>
+      <%= f.text_field(:title, {:class => 'form-control', 'placeholder' =>"Enter title"})%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :body %><br/>
+      <%= f.cktext_area(:body, {:class => 'form-control', 'placeholder' =>"Enter body"}) %>
+    </div>
+
+    <p class="form-group">
+      <%= f.label :url %><br/>
+      <%= f.text_field(:url, {:class => 'form-control', 'placeholder' =>"Enter Url"}) %>
+    </p>
+    <div class="form-group">
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>

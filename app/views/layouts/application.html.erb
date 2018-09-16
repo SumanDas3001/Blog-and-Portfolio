@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Portfolio | Suman</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+
+    <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',  integrity:'sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', crossorigin:'anonymous' %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <%= stylesheet_link_tag 'application', 'http://fonts.googleapis.com/css?family=Raleway:400,700' %>
+
+    <%= stylesheet_link_tag 'application', 'https://www.w3schools.com/w3css/4/w3.css' %>
+
+    <%= stylesheet_link_tag 'application', 'https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css' %>
+
+    <%= stylesheet_link_tag 'application', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' %>
+
+    <%= javascript_include_tag 'https://code.jquery.com/jquery-3.2.1.slim.min.js', integrity:'sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN', crossorigin:'anonymous' %>
+
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', integrity:'sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q', crossorigin:'anonymous' %>
+
+    <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', integrity:'sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', crossorigin:'anonymous' %>
+
+    <%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js' %>
+
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js' %>
+
+    <%= javascript_include_tag 'https://code.jquery.com/ui/1.12.1/jquery-ui.js' %>
+
+    <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'%>
+
+    <%= javascript_include_tag 'https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js' %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+    <%= javascript_include_tag 'https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js' %>
+
+    <script>
+      $(document).ready(function(){
+        $("p#show").click(function(){
+          alert("Mail id: suman@yottolabs.com")
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="sidebar">
+      <div id="logo">
+        <%= link_to root_path do %>
+          <%= image_tag "logo.svg" %>
+        <% end %>
+      </div>
+      <ul>
+        <li class="category">Blogger</li>
+        <li><%= link_to "Project", root_path%></li>
+        <li><%= link_to "About", about_path%></li>
+        <li><%= link_to "Others", others_path%></li>
+      </ul>
+
+      <ul>
+        <li class="category">Social</li>
+
+        <li><a href="https://github.com/SumanDas3001"><i class="fa fa-github"></i></a></li>
+
+        <li><a href="https://www.linkedin.com/in/suman-das-9068b5142/"><i class="fa fa-linkedin-square"></i></a></li>
+
+        <li><a href="https://stackoverflow.com/users/8427113/suman-das?tab=profile"><i class="fa fa-stack-overflow"></i></a></li>
+
+        <li><a href="https://github.com/SumanDas3001"><i class="fa fa-twitter"></i></a></li>
+
+        <li><a href="https://github.com/SumanDas3001"><i class="fa fa-facebook-square"></i></a></li>
+
+        <li><p id='show'><i class="fa fa-envelope"></i></p></li>
+      </ul>
+    </div>
+    <div id="main_content">
+      <div id="header">
+        <% if current_page?(root_path) %>
+          <strong><p>All Project</p></strong>
+        <% elsif current_page?(about_path) %>
+          <strong><p>About</p></strong>
+        <% elsif current_page?(others_path) %>
+          <strong><p>Others</p></strong>
+        <% else %>
+          <strong><%= link_to "Back to All Project", root_path %></strong>
+        <% end %>
+        <% if user_signed_in? %>
+          <div class="buttons">
+            <strong><%= link_to "New Project", new_post_path%></strong> |
+            <strong><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link' %></strong>
+          </div>
+        <% end %>
+      </div>
+      <% flash.each  do |name, msg| %>
+        <div>
+          <strong><%= content_tag(:div, msg, class: "alert alert-info") %></strong>
+        </div>
+      <% end %>
+        <%= yield %>
+    </div>
+  </body>
+</html>
