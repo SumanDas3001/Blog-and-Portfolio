@@ -58,8 +58,8 @@
       </div>
       <ul>
         <li class="category">Blogger</li>
-        <li><%= link_to "Project", root_path%></li>
         <li><%= link_to "About", about_path%></li>
+        <li><%= link_to "Project", root_path%></li>
         <li><%= link_to "Others", others_path%></li>
       </ul>
 
@@ -81,10 +81,10 @@
     </div>
     <div id="main_content">
       <div id="header">
-        <% if current_page?(root_path) %>
-          <strong><p>All Project</p></strong>
-        <% elsif current_page?(about_path) %>
+        <% if current_page?(about_path) %>
           <strong><p>About</p></strong>
+        <% elsif current_page?(root_path) %>
+          <strong><p>All Project</p></strong>
         <% elsif current_page?(others_path) %>
           <strong><p>Others</p></strong>
         <% else %>
